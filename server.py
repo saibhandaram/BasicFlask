@@ -1,5 +1,6 @@
-from flask import Flask
+from flask import Flask, render_template
 import random
+from datetime import datetime
 
 random_num = random.randint(1, 9)
 print(random_num)
@@ -9,7 +10,9 @@ app = Flask(__name__)
 
 @app.route("/")
 def guess_num_image():
-    return '<img src="https://media.giphy.com/media/3o7aCSPqXE5C6T8tBC/giphy.gif" alt="GIF Image">'
+    c_year = datetime.now().year
+    print(c_year)
+    return render_template("index.html", current_year=c_year)
 
 
 @app.route('/<int:post_id>')
